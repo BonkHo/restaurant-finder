@@ -15,10 +15,12 @@ app.use(express.json());
 // Create a restaurant
 app.post("/api/v1/restaurants", async (req, res) => {
 	try {
-		console.log(req.body);
-		res.status(201).json({
-			message: "Restaurant created successfully",
-		});
+		const { name, location, price_range } = req.body;
+		const result = await db.query(
+			"INSERT INTO restaurants (name, location, price_range) VALUES ($1, $2, $3) RETURNING *",
+			[name, location, price_range]
+		);
+		res.status(201).send("Restaurant created");
 	} catch (err) {
 		res.status(500).send(err);
 		console.log(err);
