@@ -2,6 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const app = express();
 const morgan = require("morgan");
+const db = require("./db");
 const PORT = process.env.PORT || 5000;
 
 // Middleware app.use(req, res, next)...
@@ -32,10 +33,8 @@ app.post("/api/v1/restaurants", async (req, res) => {
 // Get all restaurants
 app.get("/api/v1/restaurants", async (req, res) => {
 	try {
-		res.status(200).json({
-			status: "success",
-			data: { restaurants: ["McDonalds", "Burger King", "Wendys"] },
-		});
+		const result = await db.query("SELECT * FROM restaurants;");
+		console.log(result.rows);
 	} catch (err) {
 		res.status(500).send(err);
 		console.log(err);
