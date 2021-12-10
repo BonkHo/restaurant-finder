@@ -17,7 +17,7 @@ function App() {
 						path="/restaurants/:id/update"
 						element={<UpdatePage />}
 					/>
-					<Route exact path="/restuarants/:id" element={<DetailsPage />} />
+					<Route exact path="/restaurants/:id" element={<DetailsPage />} />
 				</Routes>
 			</Router>
 		</div>

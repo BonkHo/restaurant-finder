@@ -1,9 +1,16 @@
 import React from "react";
 
+// Components
+import Header from "../components/Header";
+import AddRestaurant from "../components/AddRestaurant";
+import ListRestaurants from "../components/ListRestaurants";
+
 const HomePage = () => {
 	return (
 		<div>
-			<h1>This is the homepage.</h1>
+			<Header />
+			<AddRestaurant />
+			<ListRestaurants />
 		</div>
 	);
 };
