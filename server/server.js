@@ -2,11 +2,13 @@ require("dotenv").config();
 const express = require("express");
 const app = express();
 const morgan = require("morgan");
+const cors = require("cors");
 const db = require("./db");
 const PORT = process.env.PORT || 5000;
 
 // Middleware app.use(req, res, next)...
 
+app.use(cors());
 // Morgan is asynchrounous
 app.use(morgan("dev"));
 

@@ -5,10 +5,11 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import HomePage from "./routes/HomePage";
 import DetailsPage from "./routes/DetailsPage";
 import UpdatePage from "./routes/UpdatePage";
+import { RestaurantsProvider } from "./context/RestaurantsContext";
 
 function App() {
 	return (
-		<div>
+		<RestaurantsProvider>
 			<Router>
 				<Routes>
 					<Route exact path="/" element={<HomePage />} />
@@ -20,7 +21,7 @@ function App() {
 					<Route exact path="/restaurants/:id" element={<DetailsPage />} />
 				</Routes>
 			</Router>
-		</div>
+		</RestaurantsProvider>
 	);
 }
 

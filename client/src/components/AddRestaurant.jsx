@@ -20,10 +20,10 @@ const AddRestaurant = () => {
 							<option disabled selected>
 								Price Range
 							</option>
-							<option value="1">$</option>
-							<option value="2">$$</option>
-							<option value="3">$$$</option>
-							<option value="4">$$$$</option>
+							<option defaultValue="1">$</option>
+							<option defaultValue="2">$$</option>
+							<option defaultValue="3">$$$</option>
+							<option defaultValue="4">$$$$</option>
 						</select>
 					</div>
 					<button className="btn btn-primary col">Add</button>
