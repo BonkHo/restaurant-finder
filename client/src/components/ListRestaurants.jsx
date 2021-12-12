@@ -3,7 +3,22 @@ import RestaurantFinder from "../apis/RestaurantFinder";
 import { RestaurantsContext } from "../context/RestaurantsContext";
 
 const ListRestaurants = (props) => {
+	// State for list of restaurants
 	const { restaurants, setRestaurants } = useContext(RestaurantsContext);
+
+	// Deletes a restaurant from the list
+	const handleDelete = async (id) => {
+		try {
+			await RestaurantFinder.delete(`/${id}`);
+			setRestaurants(restaurants.filter((restaurant) => restaurant.id !== id));
+		} catch (err) {
+			console.log(err);
+		}
+	};
+
+	// Edit a restuarant from the list
+	const handleEdit = async (id) => {};
+	// Collects restaurants from the API
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
@@ -29,18 +44,35 @@ const ListRestaurants = (props) => {
 					</tr>
 				</thead>
 				<tbody className="table-dark">
-					<tr>
-						<td>McDonalds</td>
-						<td>Los Angeles</td>
-						<td>$</td>
-						<td>Rating</td>
-						<td>
-							<button className="btn btn-warning">Edit</button>
-						</td>
-						<td>
-							<button className="btn btn-danger">Delete</button>
-						</td>
-					</tr>
+					{restaurants &&
+						restaurants.map((restaurant) => {
+							return (
+								<tr key={restaurant.id}>
+									<td>{restaurant.name}</td>
+									<td>{restaurant.location}</td>
+									<td>{"$".repeat(restaurant.price_range)}</td>
+									<td>"Review"</td>
+									<td>
+										<button
+											className="btn btn-warning"
+											onClick={() => {
+												handleEdit(restaurant.id);
+											}}
+										>
+											Edit
+										</button>
+									</td>
+									<td>
+										<button
+											className="btn btn-danger"
+											onClick={() => handleDelete(restaurant.id)}
+										>
+											Delete
+										</button>
+									</td>
+								</tr>
+							);
+						})}
 				</tbody>
 			</table>
 		</div>

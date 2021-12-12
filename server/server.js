@@ -22,7 +22,7 @@ app.post("/api/v1/restaurants", async (req, res) => {
 			"INSERT INTO restaurants (name, location, price_range) VALUES ($1, $2, $3) RETURNING *",
 			[name, location, price_range]
 		);
-		res.status(201).send("Restaurant created");
+		res.status(201).json({ status: "Success", data: result.rows[0] });
 	} catch (err) {
 		res.status(500).send(err);
 		console.log(err);
