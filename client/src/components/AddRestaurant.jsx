@@ -16,8 +16,8 @@ const AddRestaurant = () => {
 		e.preventDefault();
 		try {
 			const response = await RestaurantFinder.post("/", {
-				name: name,
-				location: location,
+				name,
+				location,
 				price_range: priceRange,
 			});
 			addRestaurants(response.data.data);

@@ -1,10 +1,14 @@
 import React, { useEffect, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import RestaurantFinder from "../apis/RestaurantFinder";
 import { RestaurantsContext } from "../context/RestaurantsContext";
 
 const ListRestaurants = (props) => {
 	// State for list of restaurants
 	const { restaurants, setRestaurants } = useContext(RestaurantsContext);
+
+	// Represents history of browser
+	let navigate = useNavigate();
 
 	// Deletes a restaurant from the list
 	const handleDelete = async (id) => {
@@ -17,7 +21,9 @@ const ListRestaurants = (props) => {
 	};
 
 	// Edit a restuarant from the list
-	const handleEdit = async (id) => {};
+	const handleEdit = (id) => {
+		navigate(`/restaurants/${id}/edit`);
+	};
 	// Collects restaurants from the API
 	useEffect(() => {
 		const fetchData = async () => {
@@ -28,7 +34,7 @@ const ListRestaurants = (props) => {
 			} catch (err) {}
 		};
 		fetchData();
-	}, []);
+	}, [setRestaurants]);
 
 	return (
 		<div className="list-group">
