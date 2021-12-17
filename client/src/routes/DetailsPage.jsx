@@ -3,6 +3,9 @@ import { useParams } from "react-router-dom";
 import { RestaurantsContext } from "../context/RestaurantsContext";
 import RestaurantFinder from "../apis/RestaurantFinder";
 
+// Components
+import Reviews from "../components/Reviews";
+
 const DetailsPage = () => {
 	const { id } = useParams();
 
@@ -23,9 +26,13 @@ const DetailsPage = () => {
 
 	return (
 		<div>
-			<h1 className="text-center">
-				{selectedRestaurant && selectedRestaurant.name}
-			</h1>
+			{selectedRestaurant && (
+				<>
+					<div className="mt-3">
+						<Reviews />
+					</div>
+				</>
+			)}
 		</div>
 	);
 };
