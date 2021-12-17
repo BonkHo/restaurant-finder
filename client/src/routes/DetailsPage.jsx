@@ -5,6 +5,7 @@ import RestaurantFinder from "../apis/RestaurantFinder";
 
 // Components
 import Reviews from "../components/Reviews";
+import AddReview from "../components/AddReview";
 
 const DetailsPage = () => {
 	const { id } = useParams();
@@ -28,8 +29,9 @@ const DetailsPage = () => {
 		<div>
 			{selectedRestaurant && (
 				<>
-					<div className="mt-3">
+					<div className="m-4">
 						<Reviews />
+						<AddReview />
 					</div>
 				</>
 			)}
