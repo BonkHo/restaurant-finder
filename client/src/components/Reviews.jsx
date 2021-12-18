@@ -1,75 +1,28 @@
 import React from "react";
 import StarRating from "./StarRating";
 
-const Reviews = () => {
+const Reviews = ({ reviews }) => {
 	return (
 		<div className="row rows-cols-3">
-			<div
-				className="card text-white bg-primary m-3"
-				style={{ maxWidth: "30%" }}
-			>
-				<div className="card-header d-flex justify-content-between">
-					<span>James</span>
-					<span>
-						<StarRating rating={5} />
-					</span>
-				</div>
-				<div className="card-body">
-					<p className="card-text">
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-					</p>
-				</div>
-			</div>
-
-			<div
-				className="card text-white bg-primary m-3"
-				style={{ maxWidth: "30%" }}
-			>
-				<div className="card-header d-flex justify-content-between">
-					<span>James</span>
-					<span>
-						<StarRating rating={5} />
-					</span>
-				</div>
-				<div className="card-body">
-					<p className="card-text">
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-					</p>
-				</div>
-			</div>
-
-			<div
-				className="card text-white bg-primary m-3"
-				style={{ maxWidth: "30%" }}
-			>
-				<div className="card-header d-flex justify-content-between">
-					<span>James</span>
-					<span>
-						<StarRating rating={5} />
-					</span>
-				</div>
-				<div className="card-body">
-					<p className="card-text">
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-					</p>
-				</div>
-			</div>
-			<div
-				className="card text-white bg-primary m-3"
-				style={{ maxWidth: "30%" }}
-			>
-				<div className="card-header d-flex justify-content-between">
-					<span>James</span>
-					<span>
-						<StarRating rating={5} />
-					</span>
-				</div>
-				<div className="card-body">
-					<p className="card-text">
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-					</p>
-				</div>
-			</div>
+			{reviews.map((review) => {
+				return (
+					<div
+						className="card text-white bg-primary m-3"
+						style={{ maxWidth: "30%" }}
+						key={review.id}
+					>
+						<div className="card-header d-flex justify-content-between">
+							<span>{review.name}</span>
+							<span>
+								<StarRating rating={review.rating} />
+							</span>
+						</div>
+						<div className="card-body">
+							<p className="card-text">{review.review}</p>
+						</div>
+					</div>
+				);
+			})}
 		</div>
 	);
 };

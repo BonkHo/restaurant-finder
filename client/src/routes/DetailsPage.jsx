@@ -30,7 +30,7 @@ const DetailsPage = () => {
 			{selectedRestaurant && (
 				<>
 					<div className="m-4">
-						<Reviews />
+						<Reviews reviews={selectedRestaurant.reviews} />
 						<AddReview />
 					</div>
 				</>
