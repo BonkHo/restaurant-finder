@@ -87,6 +87,23 @@ app.delete("/api/v1/restaurants/:id", async (req, res) => {
 	}
 });
 
+// Add a review to a restaurant
+app.post("/api/v1/restaurants/:id/addReview", async (req, res) => {
+	try {
+		const newReview = await db.query(
+			"INSERT INTO reviews (restaurant_id, name, review, rating) VALUES ($1, $2, $3, $4) RETURNING *;",
+			[req.params.id, req.body.name, req.body.review, req.body.rating]
+		);
+		console.log(newReview);
+		res
+			.status(201)
+			.json({ status: "success", data: { review: newReview.rows[0] } });
+	} catch (err) {
+		res.status(500).send(err);
+		console.log(err);
+	}
+});
+
 app.listen(PORT, () => {
 	console.log(`Server is running at: http://localhost:${PORT}`);
 });

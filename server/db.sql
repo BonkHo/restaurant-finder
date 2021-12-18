@@ -24,3 +24,6 @@ INSERT INTO restaurants (name, location, price_range) values ('Pizza Hut', 'New 
 INSERT INTO restaurants (name, location, price_range) values ('Wendys', 'Denver', 1);
 INSERT INTO restaurants (name, location, price_range) values ('McDonalds', 'Chicago', 1);
 INSERT INTO restaurants (name, location, price_range) values ('Taco Bell', 'Los Angeles', 1);
+
+-- Example insert into reviews table
+INSERT INTO reviews (restaurant_id, name, review, rating) values (1, 'John', 'This is a great pizza place', 5);

@@ -29,6 +29,9 @@ const DetailsPage = () => {
 		<div>
 			{selectedRestaurant && (
 				<>
+					<h1 className="text-center mt-4">
+						{selectedRestaurant.restaurant.name}
+					</h1>
 					<div className="m-4">
 						<Reviews reviews={selectedRestaurant.reviews} />
 						<AddReview />
