@@ -2,6 +2,7 @@ import React, { useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import RestaurantFinder from "../apis/RestaurantFinder";
 import { RestaurantsContext } from "../context/RestaurantsContext";
+import StarRating from "./StarRating";
 
 const ListRestaurants = (props) => {
 	// State for list of restaurants
@@ -30,6 +31,20 @@ const ListRestaurants = (props) => {
 	// Takes user to the details page
 	const handleRestaurantSelect = (id) => {
 		navigate(`/restaurants/${id}`);
+	};
+
+	const renderRating = (restaurant) => {
+		if (!restaurant.count) {
+			return <span className="text-warning">Zero Reviews</span>;
+		}
+		return (
+			<>
+				<StarRating rating={restaurant.average_rating} />
+				<span className="text-warning" style={{ marginLeft: ".5em" }}>
+					({restaurant.count})
+				</span>
+			</>
+		);
 	};
 
 	// Collects restaurants from the API
@@ -67,7 +82,7 @@ const ListRestaurants = (props) => {
 									<td>{restaurant.name}</td>
 									<td>{restaurant.location}</td>
 									<td>{"$".repeat(restaurant.price_range)}</td>
-									<td>"Review"</td>
+									<td>{renderRating(restaurant)}</td>
 									<td>
 										<button
 											className="btn btn-warning"

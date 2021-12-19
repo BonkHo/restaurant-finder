@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import RestaurantFinder from "../apis/RestaurantFinder";
 
 const AddReview = () => {
@@ -7,17 +7,20 @@ const AddReview = () => {
 	const [rating, setRating] = useState("Rating");
 	const [reviewText, setReviewText] = useState("");
 
+	const navigate = useNavigate();
+
 	const { id } = useParams();
 
 	const handleSubmitReview = async (e) => {
 		e.preventDefault();
 		try {
-			const response = await RestaurantFinder.post(`/${id}/addReview`, {
+			await RestaurantFinder.post(`/${id}/addReview`, {
 				name,
 				review: reviewText,
 				rating,
 			});
-			console.log(response);
+			navigate("/");
+			navigate("/restaurants/" + id);
 		} catch (err) {
 			console.log(err);
 		}

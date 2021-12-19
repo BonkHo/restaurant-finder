@@ -6,6 +6,7 @@ import RestaurantFinder from "../apis/RestaurantFinder";
 // Components
 import Reviews from "../components/Reviews";
 import AddReview from "../components/AddReview";
+import StarRating from "../components/StarRating";
 
 const DetailsPage = () => {
 	const { id } = useParams();
@@ -29,10 +30,30 @@ const DetailsPage = () => {
 		<div>
 			{selectedRestaurant && (
 				<>
-					<h1 className="text-center mt-4">
-						{selectedRestaurant.restaurant.name}
-					</h1>
-					<div className="m-4">
+					<div style={{ textAlign: "center", marginTop: ".5rem" }}>
+						<a
+							href="/"
+							className="text-center mt-4 "
+							style={{
+								textDecoration: "none",
+								color: "black",
+								fontSize: "3rem",
+							}}
+						>
+							{selectedRestaurant.restaurant.name}
+						</a>
+					</div>
+
+					<div className="text-center">
+						<StarRating rating={selectedRestaurant.restaurant.average_rating} />
+						<span className="text-black" style={{ marginLeft: ".5em" }}>
+							{selectedRestaurant.restaurant.count
+								? `(${selectedRestaurant.restaurant.count})`
+								: "(0)"}
+						</span>
+					</div>
+
+					<div className="m-2">
 						<Reviews reviews={selectedRestaurant.reviews} />
 						<AddReview />
 					</div>
